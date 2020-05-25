@@ -36,10 +36,9 @@ data class PieceEntity(
 )
 
 data class Piece(
-        val pos: Short,
         val color: Color,
         val rank: Rank
 ) {
     constructor(pieceEntity: PieceEntity) :
-            this(pieceEntity.pos, pieceEntity.color!!, pieceEntity.rank!!)
+            this(pieceEntity.color!!, pieceEntity.rank!!)
 }

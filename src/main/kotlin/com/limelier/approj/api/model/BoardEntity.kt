@@ -3,7 +3,7 @@ package com.limelier.approj.api.model
 import javax.persistence.*
 
 @Entity(name = "board")
-data class BoardEntity (
+data class BoardEntity(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Int = 0,
 
@@ -11,7 +11,18 @@ data class BoardEntity (
         val description: String = ""
 )
 
-data class Board (
+class Board(
         val boardEntity: BoardEntity,
-        val pieces: List<Piece>
-)
+        pieceEntities: List<PieceEntity>
+) {
+    val pieces: Array<Array<Piece?>> = Array(8) { Array<Piece?>(8) { null } }
+
+    init {
+        for (pieceEntity in pieceEntities) {
+            val pos = pieceEntity.pos
+            val row = pos / 8
+            val col = pos % 8
+            pieces[row][col] = Piece(pieceEntity)
+        }
+    }
+}

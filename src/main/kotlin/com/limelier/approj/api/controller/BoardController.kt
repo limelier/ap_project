@@ -20,8 +20,7 @@ class BoardController(
         val boardEntities: List<BoardEntity> = boardRepository.findAll()
         return boardEntities.map {
             val pieces = pieceRepository.findByBoardId(it)
-            val simplePieces = pieces.map { piece -> Piece(piece) }
-            Board(it, simplePieces)
+            Board(it, pieces)
         }
     }
 }
