@@ -13,11 +13,9 @@ data class BoardEntity(
 
 class Board(
         val boardEntity: BoardEntity,
-        pieceEntities: List<PieceEntity>
+        val pieces: Array<Array<Piece?>> = Array(8) { Array<Piece?>(8) { null } }
 ) {
-    val pieces = Array(8) { Array<Piece?>(8) { null } }
-
-    init {
+    constructor(boardEntity: BoardEntity, pieceEntities: List<PieceEntity>) : this(boardEntity) {
         for (pieceEntity in pieceEntities) {
             val pos = pieceEntity.pos
             val row = pos / 8

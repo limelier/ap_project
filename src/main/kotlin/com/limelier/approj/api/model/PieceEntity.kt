@@ -1,10 +1,11 @@
 package com.limelier.approj.api.model
 
+import org.hibernate.annotations.TypeDef
 import javax.persistence.*
 import java.io.Serializable
 
 data class PieceId(
-        val boardId: BoardEntity? = null,
+        val boardId: Int = 0,
         val pos: Short = 0
 ) : Serializable
 
