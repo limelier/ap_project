@@ -1,26 +1,38 @@
 package com.limelier.approj.api.controller
 
-import com.limelier.approj.api.model.BoardEntity
 import com.limelier.approj.api.model.Board
-import com.limelier.approj.api.model.Piece
-import com.limelier.approj.api.repository.BoardRepository
-import com.limelier.approj.api.repository.PieceRepository
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.limelier.approj.api.service.BoardService
+import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/boards")
 class BoardController(
-        private val boardRepository : BoardRepository,
-        private val pieceRepository: PieceRepository
+        private val boardService: BoardService
 ) {
-    @GetMapping("/boards")
-    fun getAllBoards(): List<Board> {
-        val boardEntities: List<BoardEntity> = boardRepository.findAll()
-        return boardEntities.map {
-            val pieces = pieceRepository.findByBoardId(it)
-            Board(it, pieces)
+    @GetMapping
+    fun getAll(): List<Board> = boardService.getAll()
+
+    @GetMapping("/{id}")
+    fun get(@PathVariable id: Int): ResponseEntity<Board> {
+        val board = boardService.get(id)
+        return if (board != null) {
+            ResponseEntity.ok(board)
+        } else {
+            ResponseEntity.notFound().build()
+        }
+    }
+
+    @PostMapping
+    fun post(@Validated @RequestBody board: Board): Int = boardService.post(board)
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Int): ResponseEntity<Void> {
+        return if (boardService.delete(id)) {
+            ResponseEntity.ok().build()
+        } else {
+            ResponseEntity.notFound().build()
         }
     }
 }
