@@ -1,0 +1,12 @@
+.tile {
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+.tile--white {
+    -fx-background-color: #c1c1a7;
+}
+
+.tile--black {
+    -fx-background-color: #3c5050;
+}

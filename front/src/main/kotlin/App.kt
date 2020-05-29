@@ -1,25 +1,25 @@
 import javafx.application.Application
-import javafx.fxml.FXMLLoader
+import javafx.geometry.Pos
 import javafx.scene.Scene
-import javafx.scene.layout.GridPane
+import javafx.scene.layout.TilePane
 import javafx.stage.Stage
-import java.net.URL
 
 const val size = 8
 
 class App : Application() {
     override fun start(primaryStage: Stage?) {
-        val loader = FXMLLoader()
-        loader.location = javaClass.getResource("/App.fxml")
-        val root = loader.load<GridPane>()
+        val root = TilePane()
+        root.alignment = Pos.CENTER
+
+        val tile = Tile(TileColor.WHITE, Piece(Color.BLACK, Rank.QUEEN))
+
+        root.children.add(tile)
 
         val scene = Scene(root, 800.0, 600.0)
         primaryStage!!.scene = scene
         primaryStage.show()
-    }
 
-    fun print() {
-        println("hello")
+        tile.displayPiece(Piece(Color.WHITE, Rank.PAWN))
     }
 }
 
