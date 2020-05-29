@@ -4,9 +4,9 @@
 }
 
 .tile--white {
-    -fx-background-color: #c1c1a7;
+    -fx-background-color: #d9cdbf;
 }
 
 .tile--black {
-    -fx-background-color: #3c5050;
+    -fx-background-color: #242333;
 }
