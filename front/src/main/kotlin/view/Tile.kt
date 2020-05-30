@@ -1,3 +1,8 @@
+package view
+
+import data.Piece
+import javafx.beans.Observable
+import javafx.beans.property.SimpleObjectProperty
 import javafx.geometry.Pos
 import javafx.scene.image.ImageView
 import javafx.scene.layout.StackPane

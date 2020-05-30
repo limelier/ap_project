@@ -1,3 +1,5 @@
+package data
+
 import javafx.scene.image.Image
 import java.io.FileInputStream
 
@@ -15,7 +17,7 @@ enum class Rank {
     KING
 }
 
-class Piece(
+data class Piece(
     val color: Color,
     val rank: Rank
 ) {
@@ -42,7 +44,11 @@ class Piece(
             val ranks = Rank.values()
             val colors = Color.values()
             val pieces = ranks.flatMap { rank -> colors.map { color -> Piece(color, rank) } }
-            pieceImages = pieces.associateWith { loadImage(it) }
+            pieceImages = pieces.associateWith {
+                loadImage(
+                    it
+                )
+            }
         }
     }
 }

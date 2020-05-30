@@ -1,7 +1,9 @@
+package data
+
 data class Board(
     var name: String = "",
     var description: String = "",
-    var pieces: Array<Array<Piece?>> = Array(8) { arrayOfNulls(8) }
+    var pieces: Array<Array<Piece?>> = Array(8) { Array<Piece?>(8) { null } }
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
