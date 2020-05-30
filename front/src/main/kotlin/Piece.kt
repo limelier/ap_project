@@ -15,12 +15,12 @@ enum class Rank {
     KING
 }
 
-data class Piece(
+class Piece(
     val color: Color,
     val rank: Rank
 ) {
     val image: Image
-    get() = getImage(this)
+        get() = getImage(this)
 
     companion object {
         private val pieceImages: Map<Piece, Image>
