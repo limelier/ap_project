@@ -11,22 +11,11 @@ class App : Application() {
         val root = TilePane()
         root.alignment = Pos.CENTER
 
-        var tile = Tile(TileColor.WHITE)
-
-        for (i in 0..8) {
-            for (j in 0..8) {
-                tile = Tile(
-                    when((i + j) % 2 == 0) {
-                        true -> TileColor.BLACK
-                        false -> TileColor.WHITE
-                    },
-                    null
-                )
-                root.children.add(tile)
+        for (i in 0..7) {
+            for (j in 0..7) {
+                root.children.add(Tile(i, j))
             }
         }
-
-        tile.displayPiece(Piece(Color.WHITE, Rank.QUEEN))
 
         val scene = Scene(root, 800.0, 600.0)
         primaryStage!!.scene = scene

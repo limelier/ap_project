@@ -7,12 +7,15 @@ enum class TileColor {
     BLACK
 }
 
-class Tile(color: TileColor, piece: Piece? = null) : StackPane() {
-
+class Tile(row: Int, column: Int) : StackPane() {
+    private val color = when((row + column) % 2 == 0) {
+        true -> TileColor.WHITE
+        false -> TileColor.BLACK
+    }
 
     private val imageView = ImageView()
 
-    fun displayPiece(piece: Piece?) {
+    fun setPiece(piece: Piece?) {
         imageView.image = piece?.image
     }
 
@@ -26,7 +29,6 @@ class Tile(color: TileColor, piece: Piece? = null) : StackPane() {
             }
         )
 
-        displayPiece(piece)
         imageView.fitWidth = 56.0
         imageView.fitHeight = 56.0
         imageView.isPreserveRatio = true
