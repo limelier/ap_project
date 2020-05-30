@@ -11,5 +11,8 @@ class BoardController(model: BoardModel, view: BoardView) {
         flatPieces.zip(flatTiles).forEach {
             it.first.addListener { _, _, piece -> it.second.setPiece(piece)}
         }
+
+        view.name.bindBidirectional(model.name)
+        view.description.bindBidirectional(model.description)
     }
 }
