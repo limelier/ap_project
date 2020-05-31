@@ -5,7 +5,9 @@ import data.Piece
 import data.Rank
 import javafx.beans.property.SimpleObjectProperty
 import javafx.geometry.Insets
+import javafx.geometry.Orientation
 import javafx.geometry.Pos
+import javafx.scene.control.Separator
 import javafx.scene.control.ToggleGroup
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
@@ -23,9 +25,9 @@ class SelectionPane : VBox() {
     init {
         val colorRoot = initColorRoot()
         val pieceRoot = initPieceRoot()
-        children.addAll(colorRoot, pieceRoot)
+        children.addAll(colorRoot, Separator(Orientation.HORIZONTAL), pieceRoot)
         alignment = Pos.CENTER
-        spacing = 20.0
+        spacing = 5.0
         padding = Insets(20.0)
     }
 
