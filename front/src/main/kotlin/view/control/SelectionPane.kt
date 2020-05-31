@@ -28,10 +28,9 @@ class SelectionPane : VBox() {
     }
 
     private fun initPieceRoot(): VBox {
-        val btnDelete = SelectButton("Erase").apply {
+        val btnDelete = SelectButton("Delete").apply {
             isSelected = true
             prefWidthProperty().bind(pieceButtons[0].widthProperty())
-            prefHeight = 64.0
         }
         ToggleGroup().apply {
             toggles.add(btnDelete)

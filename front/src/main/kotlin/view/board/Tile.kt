@@ -5,7 +5,7 @@ import javafx.geometry.Pos
 import javafx.scene.image.ImageView
 import javafx.scene.layout.StackPane
 
-enum class TileColor {
+private enum class TileColor {
     WHITE,
     BLACK
 }
