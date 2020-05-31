@@ -1,4 +1,4 @@
-package view
+package view.control
 
 import data.Color
 import data.Piece

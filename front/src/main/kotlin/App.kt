@@ -1,21 +1,9 @@
-import controller.BoardController
-import data.Color
-import data.Piece
-import data.Rank
 import javafx.application.Application
-import javafx.beans.property.SimpleObjectProperty
-import javafx.geometry.Pos
 import javafx.scene.Scene
 import javafx.scene.layout.HBox
-import javafx.scene.layout.Pane
-import javafx.scene.layout.StackPane
-import javafx.scene.layout.TilePane
 import javafx.stage.Stage
-import model.BoardModel
-import view.BoardView
-import view.ControlPane
-import view.SelectionPane
-import view.Tile
+import view.board.BoardView
+import view.control.ControlPane
 
 const val size = 8
 

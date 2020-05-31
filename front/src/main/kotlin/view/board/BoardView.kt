@@ -1,4 +1,4 @@
-package view
+package view.board
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.geometry.Insets

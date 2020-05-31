@@ -1,7 +1,7 @@
 package controller
 
 import model.SelectionModel
-import view.SelectionPane
+import view.control.SelectionPane
 
 class SelectionController(model: SelectionModel, view: SelectionPane) {
     init {

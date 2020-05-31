@@ -1,4 +1,4 @@
-package view
+package view.control
 
 import javafx.event.ActionEvent
 import javafx.scene.control.ToggleButton

@@ -1,7 +1,7 @@
 package controller
 
 import model.BoardModel
-import view.BoardView
+import view.board.BoardView
 
 class BoardController(model: BoardModel, view: BoardView) {
     init {

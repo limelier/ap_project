@@ -1,4 +1,4 @@
-package view
+package view.control
 
 import javafx.geometry.Insets
 import javafx.scene.control.Separator
