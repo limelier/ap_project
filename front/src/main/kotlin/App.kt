@@ -19,7 +19,7 @@ class App : Application() {
         val boardModel = BoardModel()
         val selectionModel = SelectionModel()
 
-        BoardController(boardModel, boardView)
+        BoardController(boardModel, boardView, selectionModel)
         SelectionController(selectionModel, controlView.selectionPane)
 
         val root = HBox(boardView, controlView)
