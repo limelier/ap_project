@@ -1,7 +1,7 @@
 package data
 
 data class BoardEntity(
-    val id: Int,
+    val id: Int = 0,
     var name: String = "",
     var description: String = ""
 )

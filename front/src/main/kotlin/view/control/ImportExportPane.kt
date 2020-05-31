@@ -15,17 +15,7 @@ class ImportExportPane : VBox() {
 
     init {
         importButton.prefWidthProperty().bind(widthProperty())
-
-
         exportButton.prefWidthProperty().bind(widthProperty())
-        exportButton.onAction = EventHandler {
-            Alert(Alert.AlertType.INFORMATION).apply {
-                title = "Export board"
-                headerText = "Board exported! Use the code below to import it again."
-                contentText = "######"
-                showAndWait()
-            }
-        }
 
         children.addAll(importButton, exportButton)
         spacing = 5.0
