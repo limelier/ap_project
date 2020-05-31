@@ -6,10 +6,11 @@ import javafx.scene.layout.VBox
 
 class ControlPane : VBox() {
     val selectionPane = SelectionPane()
+    val importExportPane = ImportExportPane()
 
     init {
         children.addAll(
-            ImportExportPane(),
+            importExportPane,
             Separator(),
             selectionPane
         )

@@ -10,22 +10,12 @@ import javafx.scene.control.TextInputDialog
 import javafx.scene.layout.VBox
 
 class ImportExportPane : VBox() {
-    val importCode = SimpleStringProperty()
+    val importButton = Button("Import a board")
+    val exportButton = Button("Export board")
 
     init {
-        val importButton = Button("Import a board")
-        val exportButton = Button("Export board")
-
         importButton.prefWidthProperty().bind(widthProperty())
-        importButton.onAction = EventHandler {
-            val dialog = TextInputDialog().apply {
-                title = "Import board"
-                headerText = null
-                contentText = "Code:"
-            }
-            val result = dialog.showAndWait()
-            result.ifPresent { importCode.set(it) }
-        }
+
 
         exportButton.prefWidthProperty().bind(widthProperty())
         exportButton.onAction = EventHandler {

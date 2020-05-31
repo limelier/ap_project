@@ -1,4 +1,5 @@
 import controller.BoardController
+import controller.ImportExportController
 import controller.SelectionController
 import javafx.application.Application
 import javafx.scene.Scene
@@ -21,6 +22,7 @@ class App : Application() {
 
         BoardController(boardModel, boardView, selectionModel)
         SelectionController(selectionModel, controlView.selectionPane)
+        ImportExportController(boardModel, controlView.importExportPane)
 
         val root = HBox(boardView, controlView)
 

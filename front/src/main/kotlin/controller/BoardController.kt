@@ -1,6 +1,7 @@
 package controller
 
 import data.Piece
+import javafx.event.EventHandler
 import model.BoardModel
 import model.SelectionModel
 import view.board.BoardView
@@ -16,7 +17,7 @@ class BoardController(
 
         flatPieces.zip(flatTiles).forEach { (piece, tile) ->
             piece.addListener { _, _, newPiece -> tile.setPiece(newPiece) }
-            tile.setOnMouseClicked {
+            tile.onMouseClicked = EventHandler {
                 val rank = selectionModel.rankProperty.get()
                 piece.set(
                     if (rank == null) null
