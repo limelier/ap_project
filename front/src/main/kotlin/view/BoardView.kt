@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Label
+import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.TilePane
@@ -20,27 +21,45 @@ class BoardView : VBox() {
     val description = SimpleStringProperty()
 
     init {
-        padding = Insets(40.0, 20.0, 20.0, 20.0)
+        padding = Insets(20.0, 20.0, 20.0, 20.0)
         spacing = 20.0
 
-        val textRoot = HBox()
-        textRoot.spacing = 20.0
-        textRoot.alignment = Pos.CENTER
-        val titleBox = TextField()
-        titleBox.promptText = "untitled"
-        titleBox.textProperty().bindBidirectional(name)
-        val descBox = TextField()
-        descBox.textProperty().bindBidirectional(description)
-        textRoot.children.addAll(Label("Title"), titleBox, Label("Description"), descBox)
+        val boardRoot = TilePane().apply {
+            children.addAll(tiles.flatten())
+            prefWidth = 512.0
+            prefHeight = 512.0
+            minWidth = 512.0
+            minHeight = 512.0
+        }
 
-        val boardRoot = TilePane()
-        boardRoot.children.addAll(tiles.flatten())
-        boardRoot.prefWidth = 512.0
-        boardRoot.prefHeight = 512.0
-        boardRoot.minWidth = 512.0
-        boardRoot.minHeight = 512.0
+        children.addAll(initTextRoot(), boardRoot)
+    }
 
-
-        children.addAll(textRoot, boardRoot)
+    private fun initTextRoot(): VBox {
+        val textRoot = VBox().apply {
+            spacing = 5.0
+            alignment = Pos.CENTER
+        }
+        val titleField = TextField().apply {
+            promptText = "untitled"
+            textProperty().bindBidirectional(name)
+        }
+        val titleLabel = Label("Title")
+        val titleBox = HBox(titleLabel, titleField).apply {
+            spacing = 5.0
+            alignment = Pos.CENTER_LEFT
+        }
+        titleField.prefWidthProperty().bind(
+            titleBox.widthProperty()
+                .subtract(titleLabel.widthProperty())
+                .subtract(5.0)
+        )
+        val descArea = TextArea().apply {
+            promptText = "A more detailed description of your scenario"
+            textProperty().bindBidirectional(description)
+            prefRowCount = 3
+        }
+        textRoot.children.addAll(titleBox, descArea)
+        return textRoot
     }
 }
