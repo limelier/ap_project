@@ -8,7 +8,7 @@ import view.control.ControlPane
 const val size = 8
 
 class App : Application() {
-    override fun start(primaryStage: Stage?) {
+    override fun start(stage: Stage) {
         val root = HBox()
 
         val boardView = BoardView()
@@ -16,9 +16,10 @@ class App : Application() {
 
         root.children.addAll(boardView, controlView)
 
-        val scene = Scene(root)
-        primaryStage!!.scene = scene
-        primaryStage.show()
+        val scene = Scene(root, 750.0, 700.0)
+        stage.scene = scene
+        stage.title = "Chess scenario tool"
+        stage.show()
     }
 }
 
