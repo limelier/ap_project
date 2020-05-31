@@ -49,6 +49,7 @@ class SelectionPane : VBox() {
             children.add(btnDelete)
             children.addAll(pieceButtons)
             alignment = Pos.CENTER
+            spacing = 5.0
         }
     }
 

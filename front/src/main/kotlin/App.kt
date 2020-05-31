@@ -25,7 +25,7 @@ class App : Application() {
         val root = HBox(boardView, controlView)
 
         stage.apply {
-            scene = Scene(root, 750.0, 700.0)
+            scene = Scene(root, 760.0, 700.0)
             title = "Chess scenario tool"
             show()
         }
