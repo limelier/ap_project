@@ -12,6 +12,7 @@ import javafx.scene.layout.TilePane
 import javafx.stage.Stage
 import model.BoardModel
 import view.BoardView
+import view.SelectionPane
 import view.Tile
 
 const val size = 8
@@ -20,13 +21,11 @@ class App : Application() {
     override fun start(primaryStage: Stage?) {
         val root = StackPane()
 
-        val view = BoardView()
-        val model = BoardModel()
-        BoardController(model, view)
+        val view = SelectionPane()
 
         root.children.add(view)
 
-        val scene = Scene(root, 800.0, 600.0)
+        val scene = Scene(root)
         primaryStage!!.scene = scene
         primaryStage.show()
     }
