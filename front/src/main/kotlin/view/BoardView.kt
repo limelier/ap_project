@@ -20,7 +20,7 @@ class BoardView : VBox() {
     val description = SimpleStringProperty()
 
     init {
-        padding = Insets(20.0)
+        padding = Insets(40.0, 20.0, 20.0, 20.0)
         spacing = 20.0
 
         val textRoot = HBox()
@@ -37,6 +37,8 @@ class BoardView : VBox() {
         boardRoot.children.addAll(tiles.flatten())
         boardRoot.prefWidth = 512.0
         boardRoot.prefHeight = 512.0
+        boardRoot.minWidth = 512.0
+        boardRoot.minHeight = 512.0
 
 
         children.addAll(textRoot, boardRoot)
