@@ -14,10 +14,13 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import view.control.ImportExportPane
 import java.io.IOException
+import java.util.*
 
 class ImportExportController(private val boardModel: BoardModel, importExportPane: ImportExportPane) {
     private val httpClient = OkHttpClient()
     private val mapper = jacksonObjectMapper()
+
+    private val loc = ResourceBundle.getBundle("locale.Modals")
 
     init {
         val importButton = importExportPane.importButton
@@ -43,9 +46,9 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
             .post(json.toRequestBody("application/json; charset=utf-8".toMediaType()))
             .build()
 
-        val response = httpClient.newCall(request).execute()
-
         try {
+            val response = httpClient.newCall(request).execute()
+
             response.use {
                 if (it.isSuccessful && it.body != null) {
                     codeAlert(it.body!!.string())
@@ -60,8 +63,8 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
 
     private fun genericErrorAlert(it: Any) {
         Alert(Alert.AlertType.ERROR).apply {
-            title = "Unknown error"
-            headerText = "Unexpected error occurred"
+            title = loc.getString("genericError.title")
+            headerText = loc.getString("genericError.header")
             contentText = it.toString()
 
             showAndWait()
@@ -70,9 +73,9 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
 
     private fun codeAlert(code: String) {
         Alert(Alert.AlertType.INFORMATION).apply {
-            title = "Export successful"
+            title = loc.getString("codeAlert.title")
             headerText = code
-            contentText = "Use the code above to import the board somewhere else."
+            contentText = loc.getString("codeAlert.content")
 
             showAndWait()
         }
@@ -80,16 +83,16 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
 
     private fun handleImportRequest() {
         val dialog = TextInputDialog().apply {
-            title = "Import board"
+            title = loc.getString("importDialog.title")
             headerText = null
-            contentText = "Code:"
+            contentText = loc.getString("importDialog.content")
 
         }
         val result = dialog.showAndWait()
-        result.ifPresent { executeImport(it.toInt()) }
+        result.ifPresent { executeImport(it) }
     }
 
-    private fun executeImport(code: Int) {
+    private fun executeImport(code: String) {
         val request = Request.Builder()
             .url("http://localhost:8080/api/boards/${code}")
             .build()
@@ -111,9 +114,9 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
 
     private fun connectionFailureAlert() {
         Alert(Alert.AlertType.ERROR).apply {
-            title = "Connection failure"
-            headerText = "Connection failure!"
-            contentText = "Make sure your internet connection works."
+            title = loc.getString("connectionAlert.title")
+            headerText = loc.getString("connectionAlert.header")
+            contentText = loc.getString("connectionAlert.content")
 
             showAndWait()
         }
@@ -121,9 +124,9 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
 
     private fun importFailureAlert() {
         Alert(Alert.AlertType.ERROR).apply {
-            title = "Import failure"
-            headerText = "Import failed!"
-            contentText = "The code you entered was invalid, please try again."
+            title = loc.getString("importFailureAlert.title")
+            headerText = loc.getString("importFailureAlert.header")
+            contentText = loc.getString("importFailureAlert.content")
 
             showAndWait()
         }

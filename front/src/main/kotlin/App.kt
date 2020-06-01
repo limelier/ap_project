@@ -9,6 +9,7 @@ import model.BoardModel
 import model.SelectionModel
 import view.board.BoardView
 import view.control.ControlPane
+import java.util.*
 
 const val size = 8
 
@@ -26,9 +27,10 @@ class App : Application() {
 
         val root = HBox(boardView, controlView)
 
+        val loc = ResourceBundle.getBundle("locale.Main")
         stage.apply {
             scene = Scene(root, 760.0, 700.0)
-            title = "Chess scenario tool"
+            title = loc.getString("appTitle")
             show()
         }
     }

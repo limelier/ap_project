@@ -11,6 +11,9 @@ import javafx.scene.control.Separator
 import javafx.scene.control.ToggleGroup
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import java.util.*
+
+private val loc = ResourceBundle.getBundle("locale.Main")
 
 class SelectionPane : VBox() {
     val colorProperty = SimpleObjectProperty(Color.WHITE)
@@ -28,7 +31,7 @@ class SelectionPane : VBox() {
     }
 
     private fun initPieceRoot(): VBox {
-        val btnDelete = SelectButton("Delete").apply {
+        val btnDelete = SelectButton(loc.getString("deleteSelector")).apply {
             isSelected = true
             prefWidthProperty().bind(pieceButtons[0].widthProperty())
         }
@@ -54,9 +57,9 @@ class SelectionPane : VBox() {
     }
 
     private fun initColorRoot(): HBox {
-        val btnWhite = SelectButton("White")
+        val btnWhite = SelectButton(loc.getString("whiteSelector"))
         btnWhite.isSelected = true
-        val btnBlack = SelectButton("Black")
+        val btnBlack = SelectButton(loc.getString("blackSelector"))
         ToggleGroup().apply {
             toggles.addAll(btnWhite, btnBlack)
             selectedToggleProperty().addListener { _, _, value ->

@@ -9,6 +9,9 @@ import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.TilePane
 import javafx.scene.layout.VBox
+import java.util.*
+
+private val loc = ResourceBundle.getBundle("locale.Main")
 
 class BoardView : VBox() {
     val tiles = Array(8) { row ->
@@ -41,10 +44,10 @@ class BoardView : VBox() {
             alignment = Pos.CENTER
         }
         val titleField = TextField().apply {
-            promptText = "untitled"
+            promptText = loc.getString("titlePrompt")
             textProperty().bindBidirectional(name)
         }
-        val titleLabel = Label("Title")
+        val titleLabel = Label(loc.getString("titleLabel"))
         val titleBox = HBox(titleLabel, titleField).apply {
             spacing = 5.0
             alignment = Pos.CENTER_LEFT
@@ -55,7 +58,7 @@ class BoardView : VBox() {
                 .subtract(5.0)
         )
         val descArea = TextArea().apply {
-            promptText = "A more detailed description of your scenario"
+            promptText = loc.getString("descPrompt")
             textProperty().bindBidirectional(description)
             prefRowCount = 3
         }

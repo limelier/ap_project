@@ -1,17 +1,16 @@
 package view.control
 
-import javafx.beans.property.SimpleStringProperty
-import javafx.event.EventHandler
 import javafx.geometry.Pos
-import javafx.scene.control.Alert
 import javafx.scene.control.Button
-import javafx.scene.control.TextInputControl
-import javafx.scene.control.TextInputDialog
 import javafx.scene.layout.VBox
+import java.util.*
+
+private val loc = ResourceBundle.getBundle("locale.Main")
 
 class ImportExportPane : VBox() {
-    val importButton = Button("Import a board")
-    val exportButton = Button("Export board")
+
+    val importButton = Button(loc.getString("importButton"))
+    val exportButton = Button(loc.getString("exportButton"))
 
     init {
         importButton.prefWidthProperty().bind(widthProperty())
