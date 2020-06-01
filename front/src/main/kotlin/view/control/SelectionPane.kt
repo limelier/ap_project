@@ -27,7 +27,7 @@ class SelectionPane : VBox() {
         children.addAll(initColorRoot(), Separator(Orientation.HORIZONTAL), initPieceRoot())
         alignment = Pos.CENTER
         spacing = 5.0
-        padding = Insets(0.0, 20.0, 0.0, 20.0)
+        padding = Insets(0.0, 10.0, 0.0, 10.0)
     }
 
     private fun initPieceRoot(): VBox {

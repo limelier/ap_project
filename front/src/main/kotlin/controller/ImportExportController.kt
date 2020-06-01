@@ -7,6 +7,7 @@ import data.BoardEntity
 import javafx.event.EventHandler
 import javafx.scene.control.Alert
 import javafx.scene.control.TextInputDialog
+import javafx.scene.layout.Region
 import model.BoardModel
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -117,6 +118,7 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
             title = loc.getString("connectionAlert.title")
             headerText = loc.getString("connectionAlert.header")
             contentText = loc.getString("connectionAlert.content")
+            dialogPane.minHeight = Region.USE_PREF_SIZE
 
             showAndWait()
         }
