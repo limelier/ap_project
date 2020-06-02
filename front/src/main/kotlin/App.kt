@@ -13,6 +13,9 @@ import java.util.*
 
 const val size = 8
 
+/**
+ * Main graphical application.
+ */
 class App : Application() {
     override fun start(stage: Stage) {
         val boardView = BoardView()
@@ -27,6 +30,9 @@ class App : Application() {
 
         val root = HBox(boardView, controlView)
 
+        /**
+         * Resource bundle containing localized strings.
+         */
         val loc = ResourceBundle.getBundle("locale.Main")
         stage.apply {
             scene = Scene(root, 760.0, 700.0)

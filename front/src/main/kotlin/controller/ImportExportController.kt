@@ -17,6 +17,9 @@ import view.control.ImportExportPane
 import java.io.IOException
 import java.util.*
 
+/**
+ * Controller allowing the buttons in the [importExportPane] to import and export the board.
+ */
 class ImportExportController(private val boardModel: BoardModel, importExportPane: ImportExportPane) {
     private val httpClient = OkHttpClient()
     private val mapper = jacksonObjectMapper()

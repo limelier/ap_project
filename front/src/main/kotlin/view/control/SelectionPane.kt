@@ -13,8 +13,14 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import java.util.*
 
+/**
+ * Resource bundle containing localized strings.
+ */
 private val loc = ResourceBundle.getBundle("locale.Main")
 
+/**
+ * Pane holding the buttons which allow the user to select the current piece to place.
+ */
 class SelectionPane : VBox() {
     val colorProperty = SimpleObjectProperty(Color.WHITE)
     val rankProperty = SimpleObjectProperty<Rank>(null)

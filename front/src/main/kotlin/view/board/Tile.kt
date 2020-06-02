@@ -10,14 +10,26 @@ private enum class TileColor {
     BLACK
 }
 
+/**
+ * UI element for a board tile.
+ */
 class Tile(row: Int, column: Int) : StackPane() {
-    private val color = when((row + column) % 2 == 0) {
+    /**
+     * The [TileColor] of the current tile, determined by [row] and [column].
+     */
+    private val color = when ((row + column) % 2 == 0) {
         true -> TileColor.WHITE
         false -> TileColor.BLACK
     }
 
+    /**
+     * Holds the image for the piece on the tile, if one exists.
+     */
     private val imageView = ImageView()
 
+    /**
+     * Sets the image contained in [imageView] to the one for the given [piece], or to no image if the value is `null`.
+     */
     fun setPiece(piece: Piece?) {
         imageView.image = piece?.image
     }

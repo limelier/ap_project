@@ -17,6 +17,9 @@ enum class Rank {
     KING
 }
 
+/**
+ * Chess piece type, with [color] and [rank].
+ */
 data class Piece(
     val color: Color,
     val rank: Rank

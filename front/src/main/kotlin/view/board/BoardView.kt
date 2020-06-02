@@ -13,14 +13,20 @@ import java.util.*
 
 private val loc = ResourceBundle.getBundle("locale.Main")
 
+/**
+ * View for the current board, title and description.
+ */
 class BoardView : VBox() {
+    /**
+     * 8 by 8 matrix holding the tiles in the view.
+     */
     val tiles = Array(8) { row ->
         Array(8) { col ->
             Tile(row, col)
         }
     }
 
-    val name = SimpleStringProperty()
+    val title = SimpleStringProperty()
     val description = SimpleStringProperty()
 
     init {
@@ -38,6 +44,9 @@ class BoardView : VBox() {
         children.addAll(initTextRoot(), boardRoot)
     }
 
+    /**
+     * Initialize the [javafx.scene.layout.VBox] containing the [title] and [description].
+     */
     private fun initTextRoot(): VBox {
         val textRoot = VBox().apply {
             spacing = 5.0
@@ -45,7 +54,7 @@ class BoardView : VBox() {
         }
         val titleField = TextField().apply {
             promptText = loc.getString("titlePrompt")
-            textProperty().bindBidirectional(name)
+            textProperty().bindBidirectional(title)
         }
         val titleLabel = Label(loc.getString("titleLabel"))
         val titleBox = HBox(titleLabel, titleField).apply {
