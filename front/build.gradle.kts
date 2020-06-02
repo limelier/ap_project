@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.3.72"
     application
     id("org.openjfx.javafxplugin") version "0.0.8"
+    id("org.jetbrains.dokka") version "0.10.1"
 }
 
 javafx {
@@ -13,6 +14,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
