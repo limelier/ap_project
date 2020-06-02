@@ -51,14 +51,4 @@ class BoardService @Autowired constructor(
         pieceRepository.saveAll(pieceEntities)
         return boardEntity.id
     }
-
-    fun delete(id: Int): Boolean {
-        val boardEntity = boardRepository.findByIdOrNull(id)
-        return if (boardEntity == null) {
-            false
-        } else {
-            boardRepository.delete(boardEntity)
-            true
-        }
-    }
 }

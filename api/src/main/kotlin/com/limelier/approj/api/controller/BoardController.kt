@@ -26,13 +26,4 @@ class BoardController(
 
     @PostMapping
     fun post(@Validated @RequestBody board: Board): Int = boardService.post(board)
-
-    @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Int): ResponseEntity<Void> {
-        return if (boardService.delete(id)) {
-            ResponseEntity.ok().build()
-        } else {
-            ResponseEntity.notFound().build()
-        }
-    }
 }
