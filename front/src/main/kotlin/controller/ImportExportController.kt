@@ -45,7 +45,7 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
             row.map { it.get() }.toTypedArray()
         }.toTypedArray()
         val boardEntity = BoardEntity(
-            name = boardModel.name.get(),
+            name = boardModel.title.get(),
             description = boardModel.description.get()
         )
         val board = Board(boardEntity, pieces)
@@ -177,7 +177,7 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
      */
     private fun importFromJson(json: String) {
         val board: Board = mapper.readValue(json)
-        boardModel.name.set(board.boardEntity.name)
+        boardModel.title.set(board.boardEntity.name)
         boardModel.description.set(board.boardEntity.description)
 
         val modelPieces = boardModel.pieces.flatten()
