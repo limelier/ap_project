@@ -6,6 +6,13 @@ import model.BoardModel
 import model.SelectionModel
 import view.board.BoardView
 
+/**
+ * Tie the board [model] and [view] together.
+ *
+ * Updates the [view] pieces are changed in the [model], and changes the model when a tile on the view is clicked.
+ * Uses the [selectionModel] to determine which piece to change a tile's state to. Also bidirectionally binds a board's
+ * name and description.
+ */
 class BoardController(
     model: BoardModel,
     view: BoardView,

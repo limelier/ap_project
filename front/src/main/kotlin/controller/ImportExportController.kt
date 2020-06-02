@@ -21,6 +21,9 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
     private val httpClient = OkHttpClient()
     private val mapper = jacksonObjectMapper()
 
+    /**
+     * Resource bundle containing localized strings.
+     */
     private val loc = ResourceBundle.getBundle("locale.Modals")
 
     init {
@@ -31,6 +34,12 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
         exportButton.onAction = EventHandler { handleExportRequest() }
     }
 
+    /**
+     * Build a [data.Board] from the [boardModel] and POST it to the API.
+     *
+     * Call [codeAlert] with the code once exporting is complete.
+     * Call [connectionFailureAlert] if connection to the API fails.
+     */
     private fun handleExportRequest() {
         val pieces = boardModel.pieces.map { row ->
             row.map { it.get() }.toTypedArray()
@@ -62,16 +71,25 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
         }
     }
 
+    /**
+     * Display an alert for an unknown error, with [it] as the contentText.
+     *
+     * Should generally not appear.
+     */
     private fun genericErrorAlert(it: Any) {
         Alert(Alert.AlertType.ERROR).apply {
             title = loc.getString("genericError.title")
             headerText = loc.getString("genericError.header")
             contentText = it.toString()
+            dialogPane.minHeight = Region.USE_PREF_SIZE
 
             showAndWait()
         }
     }
 
+    /**
+     * Display an alert with the [code] that the board was saved at.
+     */
     private fun codeAlert(code: String) {
         Alert(Alert.AlertType.INFORMATION).apply {
             title = loc.getString("codeAlert.title")
@@ -82,6 +100,11 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
         }
     }
 
+    /**
+     * Show a dialog asking for a code for the board to import.
+     *
+     * Calls [executeImport] with the code once obtained.
+     */
     private fun handleImportRequest() {
         val dialog = TextInputDialog().apply {
             title = loc.getString("importDialog.title")
@@ -93,6 +116,13 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
         result.ifPresent { executeImport(it) }
     }
 
+    /**
+     * Send a GET request to the API to retrieve the board with the given [code].
+     *
+     * Calls [importFromJson] with the response body if successful, or [importFailureAlert] on a failure such as being
+     * unable to find the board.
+     * Calls [connectionFailureAlert] if connection to the API fails.
+     */
     private fun executeImport(code: String) {
         val request = Request.Builder()
             .url("http://localhost:8080/api/boards/${code}")
@@ -113,6 +143,9 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
         }
     }
 
+    /**
+     * Show an alert describing a connection failure.
+     */
     private fun connectionFailureAlert() {
         Alert(Alert.AlertType.ERROR).apply {
             title = loc.getString("connectionAlert.title")
@@ -124,6 +157,11 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
         }
     }
 
+    /**
+     * Show an alert describing an import failure.
+     *
+     * An example of an import failure is trying to import a non-existent board.
+     */
     private fun importFailureAlert() {
         Alert(Alert.AlertType.ERROR).apply {
             title = loc.getString("importFailureAlert.title")
@@ -134,6 +172,9 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
         }
     }
 
+    /**
+     * Deserialize a [json] string into a [data.Board], importing it into the [boardModel].
+     */
     private fun importFromJson(json: String) {
         val board: Board = mapper.readValue(json)
         boardModel.name.set(board.boardEntity.name)
