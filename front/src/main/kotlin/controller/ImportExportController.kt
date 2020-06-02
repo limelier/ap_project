@@ -18,7 +18,7 @@ import java.io.IOException
 import java.util.*
 
 /**
- * Controller allowing the buttons in the [importExportPane] to import and export the board in the [boardModel].
+ * Controller allowing the buttons in the UI to import and export the board in the [boardModel].
  */
 class ImportExportController(private val boardModel: BoardModel, importExportPane: ImportExportPane) {
     private val httpClient = OkHttpClient()
@@ -48,8 +48,8 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
             row.map { it.get() }.toTypedArray()
         }.toTypedArray()
         val boardEntity = BoardEntity(
-            name = boardModel.title.get(),
-            description = boardModel.description.get()
+            name = boardModel.titleProperty.get(),
+            description = boardModel.descriptionProperty.get()
         )
         val board = Board(boardEntity, pieces)
         val json = mapper.writeValueAsString(board)
@@ -180,8 +180,8 @@ class ImportExportController(private val boardModel: BoardModel, importExportPan
      */
     private fun importFromJson(json: String) {
         val board: Board = mapper.readValue(json)
-        boardModel.title.set(board.boardEntity.name)
-        boardModel.description.set(board.boardEntity.description)
+        boardModel.titleProperty.set(board.boardEntity.name)
+        boardModel.descriptionProperty.set(board.boardEntity.description)
 
         val modelPieces = boardModel.pieces.flatten()
         val importedPieces = board.pieces.flatten()

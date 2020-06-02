@@ -33,7 +33,7 @@ class BoardController(
             }
         }
 
-        view.title.bindBidirectional(model.title)
-        view.description.bindBidirectional(model.description)
+        view.titleProperty.bindBidirectional(model.titleProperty)
+        view.descriptionProperty.bindBidirectional(model.descriptionProperty)
     }
 }

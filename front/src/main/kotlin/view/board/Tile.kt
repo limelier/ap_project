@@ -15,7 +15,7 @@ private enum class TileColor {
  */
 class Tile(row: Int, column: Int) : StackPane() {
     /**
-     * The [TileColor] of the current tile, determined by [row] and [column].
+     * [TileColor] of the current tile, determined by row and column.
      */
     private val color = when ((row + column) % 2 == 0) {
         true -> TileColor.WHITE

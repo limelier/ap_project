@@ -26,8 +26,8 @@ class BoardView : VBox() {
         }
     }
 
-    val title = SimpleStringProperty()
-    val description = SimpleStringProperty()
+    val titleProperty = SimpleStringProperty()
+    val descriptionProperty = SimpleStringProperty()
 
     init {
         padding = Insets(20.0, 20.0, 20.0, 20.0)
@@ -45,7 +45,7 @@ class BoardView : VBox() {
     }
 
     /**
-     * Initialize the [javafx.scene.layout.VBox] containing the [title] and [description].
+     * Initialize the [javafx.scene.layout.VBox] containing the [titleProperty] and [descriptionProperty].
      */
     private fun initTextRoot(): VBox {
         val textRoot = VBox().apply {
@@ -54,7 +54,7 @@ class BoardView : VBox() {
         }
         val titleField = TextField().apply {
             promptText = loc.getString("titlePrompt")
-            textProperty().bindBidirectional(title)
+            textProperty().bindBidirectional(titleProperty)
         }
         val titleLabel = Label(loc.getString("titleLabel"))
         val titleBox = HBox(titleLabel, titleField).apply {
@@ -68,7 +68,7 @@ class BoardView : VBox() {
         )
         val descArea = TextArea().apply {
             promptText = loc.getString("descPrompt")
-            textProperty().bindBidirectional(description)
+            textProperty().bindBidirectional(descriptionProperty)
             prefRowCount = 3
         }
         textRoot.children.addAll(titleBox, descArea)
