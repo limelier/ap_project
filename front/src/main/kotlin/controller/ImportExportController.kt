@@ -18,7 +18,7 @@ import java.io.IOException
 import java.util.*
 
 /**
- * Controller allowing the buttons in the [importExportPane] to import and export the board.
+ * Controller allowing the buttons in the [importExportPane] to import and export the board in the [boardModel].
  */
 class ImportExportController(private val boardModel: BoardModel, importExportPane: ImportExportPane) {
     private val httpClient = OkHttpClient()
