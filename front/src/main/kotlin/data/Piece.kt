@@ -1,7 +1,6 @@
 package data
 
 import javafx.scene.image.Image
-import java.io.FileInputStream
 
 enum class Color {
     WHITE,
@@ -42,7 +41,7 @@ data class Piece(
             val color = piece.color.name.toLowerCase()
             val rank = piece.rank.name.toLowerCase()
 
-            return Image(FileInputStream("src/main/resources/images/${color}_${rank}.png"))
+            return Image(Piece::class.java.getResourceAsStream("/images/${color}_${rank}.png"))
         }
 
         /**
@@ -55,7 +54,7 @@ data class Piece(
         }
 
         /**
-         * Call [data.Piece.Companion.loadImage] once for every possible piece, populating the map.
+         * Load the image once for every possible piece, populating the map.
          */
         init {
             val ranks = Rank.values()
